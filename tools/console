@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler"
+Bundler.setup
+
+require "caver"
+
+# require "irb"
+# require "irb/completion"
+# IRB.start
+
+require "pry"
+Pry.start
