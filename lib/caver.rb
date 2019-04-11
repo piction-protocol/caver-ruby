@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
-require "active_support"
 require "caver/version"
+require "active_support"
 
 # Klaytn client
 module Caver
-  extend ActiveSupport::Autoload
-
-  autoload :Klay
-  autoload :Net
+  autoload :ABI, "caver/abi"
+  autoload :Klay, "caver/klay"
+  autoload :Net, "caver/net"
+  autoload :Encoder, "caver/encoder"
 
   module RPC
-    extend ActiveSupport::Autoload
-
-    autoload :Client
-    autoload :Response
+    autoload :Client, "caver/rpc/client"
+    autoload :Response, "caver/rpc/response"
   end
 
   extend self
