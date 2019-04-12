@@ -4,14 +4,7 @@ require "test_helper"
 
 class TestEncoder < Caver::TestCase
   setup do
-    @encoder = Caver::Encoder.new
-  end
-
-  test "parse type" do
-    assert_equal ["bool", nil], @encoder.parse_type("bool")
-    assert_equal ["uint", "32"], @encoder.parse_type("uint32")
-    assert_equal ["bytes", "32"], @encoder.parse_type("bytes32")
-    assert_equal ["fixed", "128x128"], @encoder.parse_type("fixed128x128")
+    @encoder = Caver::ABI::Encoder
   end
 
   test "encode uint" do

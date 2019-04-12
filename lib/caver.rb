@@ -8,7 +8,6 @@ module Caver
   autoload :ABI, "caver/abi"
   autoload :Klay, "caver/klay"
   autoload :Net, "caver/net"
-  autoload :Encoder, "caver/encoder"
 
   module RPC
     autoload :Client, "caver/rpc/client"

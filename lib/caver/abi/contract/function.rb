@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "active_model"
-require "caver/encoder"
-require "caver/conversions"
 require "caver/abi/contract/parameter"
 
 module Caver::ABI
@@ -28,21 +26,16 @@ module Caver::ABI
       end
 
       def call(*args)
-        arg_types = inputs.collect(&:type)
+        raise ArgumentError, "wrong number of arguments for ##{name} (given #{args.length} , expected #{inputs.length})" if inputs.length != args.length
 
-        raise ArgumentError,
-          "wrong number of arguments for ##{name} (given #{args.length} , expected #{arg_types.length})" if arg_types.length != args.length
-
-        payload = []
-        payload << signature
-        arg_types.zip(args).each do |arg|
-          payload << Caver::Encoder.new.encode(arg[0], arg[1])
+        payloads = []
+        payloads << signature
+        inputs.zip(args).each do |input, arg|
+          payloads << input.payload(arg)
         end
 
         {
-          to: "address",
-          from: "from",
-          data: payload.join
+          data: payloads.join
         }
       end
 
